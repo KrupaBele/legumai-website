@@ -1,0 +1,696 @@
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Shield, Scale, BookOpen, Users, ArrowRight, CheckCircle, Building2, Sun, Moon, Globe, Target, Lightbulb, Code, Cpu, AlertTriangle, Clock, Map, RefreshCw, FileText, Gavel, FileCheck, UserCheck, FolderCheck, ChevronLeft, ChevronRight, BookOpenCheck, Globe2, Brain, Briefcase, Play, Award } from 'lucide-react';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import Chatbot from './components/Chatbot';
+
+// Import pages
+import AIStrategy from './pages/AIStrategy';
+import Consulting from './pages/Consulting';
+import Resources from './pages/Resources';
+import Blog from './pages/Blog';
+import Industries from './pages/Industries';
+import Training from './pages/Training';
+import About from './pages/About';
+import Careers from './pages/Careers';
+import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
+import Updates from './pages/Updates';
+import KnowledgeBase from './pages/KnowledgeBase';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import CookiePolicy from './pages/CookiePolicy';
+
+// Import components
+import Clientele from './components/Clientele';
+import Testimonials from './components/Testimonials';
+import TechAPIs from './components/TechAPIs';
+import NewsAndMedia from './components/NewsAndMedia';
+
+function StatsCarousel() {
+  const stats = [
+    { icon: <Building2 className="h-6 w-6 text-gray-800 dark:text-white" />, text: "5000+ Companies Served" },
+    { icon: <CheckCircle className="h-6 w-6 text-gray-800 dark:text-white" />, text: "99.9% Compliance Rate" },
+    { icon: <Shield className="h-6 w-6 text-gray-800 dark:text-white" />, text: "Industry Leaders" },
+    { icon: <Award className="h-6 w-6 text-gray-800 dark:text-white" />, text: "Expert Advisory" },
+    // Duplicate for seamless loop
+    { icon: <Building2 className="h-6 w-6 text-gray-800 dark:text-white" />, text: "5000+ Companies Served" },
+    { icon: <CheckCircle className="h-6 w-6 text-gray-800 dark:text-white" />, text: "99.9% Compliance Rate" },
+    { icon: <Shield className="h-6 w-6 text-gray-800 dark:text-white" />, text: "Industry Leaders" },
+    { icon: <Award className="h-6 w-6 text-gray-800 dark:text-white" />, text: "Expert Advisory" }
+  ];
+
+  return (
+    <div className="stats-carousel-container">
+      <div className="stats-track">
+        {stats.map((stat, index) => (
+          <div key={index} className="stat-item">
+            <div className="stat-icon">{stat.icon}</div>
+            <span className="stat-text">{stat.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProductCard({ service, isActive, onMouseEnter }) {
+  return (
+    <div 
+      className={`product-card ${isActive ? 'product-card-active' : ''}`}
+      onMouseEnter={onMouseEnter}
+    >
+      <img 
+        src={service.image} 
+        alt={service.title}
+        className={`product-image ${isActive ? 'product-image-hover' : ''}`}
+      />
+      <div className="product-content">
+        <div className={`product-icon ${isActive ? 'product-icon-hover' : ''}`}>
+          {service.icon}
+        </div>
+        <h3 className="product-title">{service.title}</h3>
+        <p className="product-description">{service.description}</p>
+        <div className="product-features">
+          {service.features.map((feature, index) => (
+            <div key={index} className="product-feature">
+              <CheckCircle className="h-5 w-5 text-emerald-500" />
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+        <button className="button-primary mt-8">
+          Learn More
+          <ArrowRight className="ml-2 h-5 w-5" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ExpertiseTypewriter() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const expertise = [
+    { text: "Compliance Management", class: "expertise-1" },
+    { text: "Expert Audits", class: "expertise-2" },
+    { text: "Advisory Services", class: "expertise-3" },
+    { text: "AI-driven Solutions", class: "expertise-4" },
+    { text: "POSH Training", class: "expertise-5" },
+    { text: "Corporate Training", class: "expertise-6" }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % expertise.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="h-[40px] flex items-center justify-center">
+      <div key={currentIndex} className={`typewriter ${expertise[currentIndex].class}`}>
+        {expertise[currentIndex].text}
+      </div>
+    </div>
+  );
+}
+
+function ServiceCard({ service }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+      className="glass p-8 rounded-3xl overflow-hidden relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out"
+          style={{
+            backgroundImage: `url(${service.image})`,
+            transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+            opacity: 0.15
+          }}
+        />
+      </div>
+      
+      <div className="relative z-10">
+        <div className="mb-6 p-4 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-2xl inline-block">
+          {service.icon}
+        </div>
+        
+        <h3 className="text-3xl font-medium mb-6 gradient-text">{service.title}</h3>
+        
+        <div className="space-y-6">
+          {service.sections.map((section, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: idx * 0.2 }}
+            >
+              <h4 className="text-xl font-medium text-gray-800 dark:text-gray-200 mb-4">
+                {section.title}
+              </h4>
+              <ul className="space-y-3">
+                {section.items.map((item, itemIdx) => (
+                  <motion.li 
+                    key={itemIdx}
+                    className="flex items-start space-x-3 text-gray-600 dark:text-gray-300"
+                    whileHover={{ x: 10 }}
+                  >
+                    <CheckCircle className="h-6 w-6 mt-0.5 flex-shrink-0 text-emerald-500" />
+                    <span className="text-lg">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+        
+        <motion.button
+          className="button-primary mt-8"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Learn More
+          <ArrowRight className="ml-1 h-4 w-4 inline" />
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+}
+
+function ExpertiseCard({ expertise, index }) {
+  const [ref, inView] = useInView({
+    threshold: 0.2,
+    triggerOnce: true
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="glass p-8 rounded-3xl card-hover relative overflow-hidden group"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/5 to-gray-700/5 dark:from-gray-100/5 dark:to-gray-300/5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+      
+      <div className="relative z-10">
+        <div className="mb-6 p-4 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-2xl inline-block">
+          {expertise.icon}
+        </div>
+        
+        <h3 className="text-2xl font-medium mb-4 gradient-text">{expertise.title}</h3>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">{expertise.description}</p>
+        
+        {expertise.stats && (
+          <div className="text-3xl font-bold gradient-text">{expertise.stats}</div>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+function App() {
+  const [isDark, setIsDark] = useState(false);
+  const [currentService, setCurrentService] = useState(0);
+  const sliderRef = React.useRef(null);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    setIsDark(shouldBeDark);
+    
+    if (shouldBeDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => {
+      if (!localStorage.getItem('theme')) {
+        setIsDark(e.matches);
+        if (e.matches) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDark(prev => {
+      const newTheme = !prev;
+      localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+      if (newTheme) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      return newTheme;
+    });
+  };
+
+  const services = [
+    {
+      icon: <Gavel className="h-10 w-10 text-gray-800 dark:text-white" />,
+      title: "Advisory Services",
+      description: "Expert guidance through complex labor laws and compliance requirements.",
+      image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80",
+      features: [
+        "Legal opinions on employment matters",
+        "Compliance strategy development",
+        "Risk assessment and mitigation",
+        "Policy framework development"
+      ]
+    },
+    {
+      icon: <FileCheck className="h-10 w-10 text-gray-800 dark:text-white" />,
+      title: "Audit Services",
+      description: "Comprehensive audits to ensure complete regulatory compliance.",
+      image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80",
+      features: [
+        "Internal compliance audits",
+        "Risk-based assessment",
+        "Documentation review",
+        "Compliance gap analysis"
+      ]
+    },
+    {
+      icon: <FolderCheck className="h-10 w-10 text-gray-800 dark:text-white" />,
+      title: "Compliance Management",
+      description: "End-to-end compliance management powered by AI technology.",
+      image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?auto=format&fit=crop&q=80",
+      features: [
+        "Automated compliance monitoring",
+        "Real-time updates and alerts",
+        "Document management system",
+        "Compliance reporting"
+      ]
+    },
+    {
+      icon: <UserCheck className="h-10 w-10 text-gray-800 dark:text-white" />,
+      title: "POSH Training",
+      description: "Comprehensive training programs for workplace harassment prevention.",
+      image: "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&q=80",
+      features: [
+        "Interactive training modules",
+        "Case study workshops",
+        "Policy implementation support",
+        "Certification programs"
+      ]
+    }
+  ];
+
+  const challenges = [
+    {
+      icon: <Clock className="h-8 w-8 text-gray-800 dark:text-white" />,
+      title: "Manual Processes",
+      description: "Time-consuming audits, documentation, and record-keeping."
+    },
+    {
+      icon: <Map className="h-8 w-8 text-gray-800 dark:text-white" />,
+      title: "Jurisdictional Variations",
+      description: "Navigating 28+ state laws and 236+ central Acts."
+    },
+    {
+      icon: <AlertTriangle className="h-8 w-8 text-gray-800 dark:text-white" />,
+      title: "Complexity",
+      description: "Over 10,000 compliances requiring constant monitoring."
+    },
+    {
+      icon: <RefreshCw className="h-8 w-8 text-gray-800 dark:text-white" />,
+      title: "Evolving Laws",
+      description: "Frequent amendments demand real-time updates."
+    }
+  ];
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
+  const serviceSliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    fade: true,
+    beforeChange: (_, next) => setCurrentService(next)
+  };
+
+  const HomePage = () => (
+    <>
+      <div className="section-height hero-gradient pt-64 px-4">
+        <div className="container mx-auto">
+          <div className="max-w-5xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 gradient-text leading-relaxed">
+              HR Compliance with<br />Intelligent Automation
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-200 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
+              Your One-Stop Solution for Labor Law Compliance
+            </p>
+            <div className="mb-12">
+              <ExpertiseTypewriter />
+            </div>
+            <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 mb-16">
+              <button className="button-primary text-lg py-3 px-6 font-semibold">
+                Schedule Consultation
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
+              <button className="button-secondary text-lg py-3 px-6 font-semibold group">
+                Watch Demo
+                <Play className="ml-2 h-5 w-5 inline-block transform transition-transform group-hover:scale-110" />
+              </button>
+            </div>
+            
+            <StatsCarousel />
+          </div>
+        </div>
+      </div>
+
+      <Clientele />
+
+      <section className="section-height section-gradient-1">
+        <div className="container mx-auto px-4 py-24">
+          <div className="max-w-6xl mx-auto">
+            <div className="glass rounded-3xl p-12 md:p-16 dark:bg-gray-800/50">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-medium mb-4 gradient-text">
+                  SSA AI & Technology
+                </h2>
+                <h3 className="text-2xl md:text-3xl font-medium mb-8 text-gray-600 dark:text-gray-300">
+                  Revolutionizing Compliance with AI
+                </h3>
+                <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  Labour law compliance in India faces significant challenges that traditional methods struggle to address.
+                </p>
+              </div>
+
+              <div className="mb-16">
+                <Slider {...sliderSettings}>
+                  {challenges.map((challenge, index) => (
+                    <div key={index} className="px-2">
+                      <div className="glass p-8 rounded-3xl card-hover h-full">
+                        <div className="mb-6 p-4 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-2xl inline-block">
+                          {challenge.icon}
+                        </div>
+                        <h3 className="text-xl font-medium mb-4 gradient-text">{challenge.title}</h3>
+                        <p className="text-gray-600 dark:text-gray-300">{challenge.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+
+              <div className="glass p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 to-blue-500/10">
+                <div className="text-center">
+                  <h3 className="text-2xl font-medium mb-6 gradient-text">Our Solution</h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    We integrate Generative AI and Automation Frameworks to streamline compliance, reduce costs, and eliminate human error.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="products" className="section-height section-gradient-1">
+        <div className="container mx-auto px-4 py-24">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 gradient-text">
+                Products & Services
+              </h2>
+              <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+                Comprehensive solutions tailored to meet your labor law compliance needs
+              </p>
+            </div>
+            
+            <div className="relative">
+              <Slider ref={sliderRef} {...serviceSliderSettings}>
+                {services.map((service, index) => (
+                  <ProductCard
+                    key={index}
+                    service={service}
+                    isActive={currentService === index}
+                    onMouseEnter={() => setCurrentService(index)}
+                  />
+                ))}
+              </Slider>
+              
+              <div className="product-nav">
+                <div className="flex space-x-3">
+                  {services.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => sliderRef.current?.slickGoTo(index)}
+                      className={`product-dot ${
+                        currentService === index ? 'product-dot-active' : 'product-dot-inactive'
+                      }`}
+                    />
+                  ))}
+                </div>
+                
+                <div className="flex space-x-4">
+                  <button
+                    onClick={() => sliderRef.current?.slickPrev()}
+                    className="product-arrow"
+                  >
+                    <ChevronLeft className="h-6 w-6" />
+                  </button>
+                  <button
+                    onClick={() => sliderRef.current?.slickNext()}
+                    className="product-arrow"
+                  >
+                    <ChevronRight className="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="expertise" className="section-height section-gradient-2">
+        <div className="container mx-auto px-4 py-24">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-medium mb-8 gradient-text">
+                Our Expertise
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Comprehensive legal expertise combined with cutting-edge technology
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  icon: <BookOpenCheck className="h-10 w-10" />,
+                  title: "Labor Law Mastery",
+                  description: "Expert knowledge covering 236+ Acts and 10,000+ compliances across various industries and sectors.",
+                  stats: "236+ Acts"
+                },
+                {
+                  icon: <Globe2 className="h-10 w-10" />,
+                  title: "Multi-Jurisdictional Compliance",
+                  description: "Navigate complex state-specific laws across India, SEA, and MEA regions with confidence.",
+                  stats: "28+ States"
+                },
+                {
+                  icon: <Brain className="h-10 w-10" />,
+                  title: "HR Due Diligence",
+                  description: "Comprehensive support for mergers and acquisitions, ensuring smooth transitions and compliance.",
+                  stats: "500+ M&As"
+                },
+                {
+                  icon: <Briefcase className="h-10 w-10" />,
+                  title: "AI Integration",
+                  description: "Leverage advanced AI to automate 95% of compliance tasks, from payroll to documentation.",
+                  stats: "95% Automation"
+                }
+              ].map((expertise, index) => (
+                <ExpertiseCard key={index} expertise={expertise} index={index} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <NewsAndMedia />
+
+      <TechAPIs />
+      <Testimonials />
+
+      <section className="section-height section-gradient-1">
+        <div className="container mx-auto px-4 py-24">
+          <div className="max-w-5xl mx-auto glass rounded-3xl p-16 text-center dark:bg-gray-800/50">
+            <h2 className="text-4xl md:text-5xl font-medium mb-8 gradient-text">
+              Ready to Simplify Your Labor Law Compliance?
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
+              Join thousands of businesses across India who trust us with their compliance needs.
+            </p>
+            <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+              <button className="button-primary">
+                Get Started Now
+              </button>
+              <button className="button-secondary">
+                Talk to an Expert
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+
+  return (
+    <Router>
+      <div className="relative bg-white dark:bg-gray-900 transition-colors duration-200">
+        <nav className="fixed w-full z-50 top-0">
+          <div className="glass-strong mx-4 mt-4 px-6 py-4 rounded-2xl border border-gray-200/50 dark:border-gray-700/50">
+            <div className="container mx-auto flex justify-between items-center">
+              <div className="flex items-center space-x-2">
+                <Shield className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                <span className="text-xl font-bold text-gray-900 dark:text-white">SSA Compliance</span>
+              </div>
+              <div className="hidden md:flex space-x-8">
+                <Link to="/" className="nav-link">Home</Link>
+                <Link to="/about" className="nav-link">About</Link>
+                <Link to="/ai-strategy" className="nav-link">AI Strategy</Link>
+                <Link to="/consulting" className="nav-link">Consulting</Link>
+                <Link to="/training" className="nav-link">Training</Link>
+                <Link to="/contact" className="nav-link">Contact</Link>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <Routes>
+          <Route path="/ai-strategy" element={<AIStrategy />} />
+          <Route path="/consulting" element={<Consulting />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/industries" element={<Industries />} />
+          <Route path="/training" element={<Training />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/updates" element={<Updates />} />
+          <Route path="/knowledge-base" element={<KnowledgeBase />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+
+        <Chatbot />
+        
+        <button
+          onClick={toggleTheme}
+          className="theme-toggle"
+          aria-label="Toggle theme"
+        >
+          {isDark ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
+        </button>
+
+        <footer className="section-gradient-2 py-32">
+          <div className="container mx-auto px-4">
+            <div className="glass-strong rounded-3xl p-12 md:p-16 border border-gray-200/50 dark:border-gray-700/50">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                  <div className="flex items-center space-x-2 mb-6">
+                    <Shield className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                    <span className="text-xl font-bold text-gray-900 dark:text-white">SSA Compliance</span>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    Your trusted partner for pan-India labor law compliance solutions.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="footer-heading">Quick Links</h3>
+                  <ul className="space-y-4">
+                    <li><Link to="/resources" className="footer-link">Resources</Link></li>
+                    <li><Link to="/blog" className="footer-link">Blog</Link></li>
+                    <li><Link to="/industries" className="footer-link">Industries</Link></li>
+                    <li><Link to="/updates" className="footer-link">Updates</Link></li>
+                    <li><Link to="/knowledge-base" className="footer-link">Knowledge Base</Link></li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="footer-heading">Company</h3>
+                  <ul className="space-y-4">
+                    <li><Link to="/about" className="footer-link">About</Link></li>
+                    <li><Link to="/careers" className="footer-link">Careers</Link></li>
+                    <li><Link to="/contact" className="footer-link">Contact</Link></li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="footer-heading">Support</h3>
+                  <ul className="space-y-4">
+                    <li><Link to="/knowledge-base" className="footer-link">Knowledge Base</Link></li>
+                    <li><Link to="/updates" className="footer-link">Updates</Link></li>
+                    <li><Link to="/faq" className="footer-link">FAQs</Link></li>
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                  <p className="text-gray-700 dark:text-gray-300">
+                    © 2024 SSA Compliance. All rights reserved.
+                  </p>
+                  <div className="flex space-x-6">
+                    <Link to="/privacy-policy" className="footer-link">Privacy Policy</Link>
+                    <Link to="/terms-of-service" className="footer-link">Terms of Service</Link>
+                    <Link to="/cookie-policy" className="footer-link">Cookie Policy</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </Router>
+  );
+}
+
+export default App;

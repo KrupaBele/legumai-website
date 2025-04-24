@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gradient-text: linear-gradient(135deg, #0A84FF, #6C47FF);
+    --gradient-primary: linear-gradient(135deg, #0A84FF, #6C47FF);
+    --gradient-secondary: linear-gradient(135deg, #30C8D6, #6C47FF);
+    --gradient-accent: linear-gradient(135deg, #FF375F, #FF9F0A);
+  }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+  }
+
+  p, span, a, button {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.0125em;
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  .section-height {
+    min-height: 100vh;
+  }
+
+  .glass {
+    @apply backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 shadow-xl;
+  }
+
+  .glass-strong {
+    @apply backdrop-blur-xl bg-white/90 dark:bg-gray-900/90 shadow-2xl;
+  }
+
+  .button-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-[#0A84FF] to-[#6C47FF] text-white rounded-2xl font-medium 
+           hover:shadow-lg hover:shadow-blue-500/30 dark:hover:shadow-blue-500/20 
+           transition-all duration-300 flex items-center justify-center
+           hover:scale-105 active:scale-95;
+  }
+
+  .button-secondary {
+    @apply px-6 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 
+           rounded-2xl font-medium hover:bg-gray-50 dark:hover:bg-gray-800/50 
+           transition-all duration-300 transform
+           shadow-[0_8px_16px_-8px_rgba(0,0,0,0.1)]
+           dark:shadow-[0_8px_16px_-8px_rgba(255,255,255,0.1)]
+           hover:shadow-[0_16px_32px_-16px_rgba(0,0,0,0.2)]
+           dark:hover:shadow-[0_16px_32px_-16px_rgba(255,255,255,0.2)]
+           hover:scale-105 active:scale-95
+           border border-gray-100 dark:border-gray-700;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0A84FF] to-[#6C47FF] 
+           dark:from-[#30C8D6] dark:to-[#6C47FF] font-semibold tracking-tight;
+  }
+
+  .gradient-border {
+    @apply relative before:absolute before:inset-0 before:p-[2px] before:rounded-2xl 
+           before:bg-gradient-to-r before:from-[#0A84FF] before:to-[#6C47FF] 
+           before:-z-10 before:content-[''];
+  }
+
+  .card-hover {
+    @apply transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  }
+
+  .section-gradient-1 {
+    @apply bg-gradient-to-b from-gray-50/95 to-white/95 dark:from-gray-900/95 dark:to-gray-800/95;
+  }
+
+  .section-gradient-2 {
+    @apply bg-gradient-to-b from-white/95 to-gray-50/95 dark:from-gray-800/95 dark:to-gray-900/95;
+  }
+
+  .hero-gradient {
+    @apply relative overflow-hidden;
+    background: 
+      radial-gradient(circle at 15% 15%, rgba(10, 132, 255, 0.35) 0%, transparent 50%),
+      radial-gradient(circle at 85% 15%, rgba(108, 71, 255, 0.35) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(48, 200, 214, 0.25) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+    animation: gradientPulse 12s ease-in-out infinite;
+  }
+
+  .dark .hero-gradient {
+    background: 
+      radial-gradient(circle at 15% 15%, rgba(10, 132, 255, 0.25) 0%, transparent 50%),
+      radial-gradient(circle at 85% 15%, rgba(108, 71, 255, 0.25) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(48, 200, 214, 0.15) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, rgba(17, 24, 39, 0.98) 100%);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  .theme-toggle {
+    @apply fixed bottom-8 right-8 p-3 rounded-2xl bg-white dark:bg-gray-800 shadow-lg 
+           hover:shadow-xl transition-all duration-300 text-gray-800 dark:text-gray-200;
+  }
+
+  .typewriter {
+    @apply text-2xl font-semibold text-transparent bg-clip-text tracking-tight;
+    animation: typing 0.5s ease-in-out;
+  }
+
+  .expertise-1 { @apply bg-gradient-to-r from-[#0A84FF] to-[#6C47FF]; }
+  .expertise-2 { @apply bg-gradient-to-r from-[#30C8D6] to-[#6C47FF]; }
+  .expertise-3 { @apply bg-gradient-to-r from-[#FF375F] to-[#FF9F0A]; }
+  .expertise-4 { @apply bg-gradient-to-r from-[#32D74B] to-[#30C8D6]; }
+  .expertise-5 { @apply bg-gradient-to-r from-[#BF5AF2] to-[#FF375F]; }
+  .expertise-6 { @apply bg-gradient-to-r from-[#FF9F0A] to-[#FF375F]; }
+
+  .testimonial-card {
+    @apply glass-strong p-8 rounded-3xl relative overflow-hidden;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+  }
+
+  .client-logo {
+    @apply grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100;
+  }
+
+  .api-card {
+    @apply glass-strong p-8 rounded-3xl relative overflow-hidden hover:shadow-2xl transition-all duration-300;
+  }
+
+  .nav-link {
+    @apply text-base text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white font-medium
+           transition-colors duration-300 leading-relaxed;
+  }
+
+  .footer-link {
+    @apply text-base text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white 
+           transition-colors duration-300 leading-relaxed;
+  }
+
+  .footer-heading {
+    @apply text-xl font-semibold mb-6 text-gray-900 dark:text-white tracking-tight leading-tight;
+  }
+
+  .stat-card {
+    @apply flex flex-col items-center space-y-4 p-6 glass-strong rounded-2xl
+           border border-gray-200/50 dark:border-gray-700/50;
+  }
+
+  .hero-stat-card {
+    @apply flex flex-col items-center justify-center p-8 rounded-2xl
+           bg-white/90 dark:bg-gray-800/90
+           backdrop-blur-xl
+           border border-white/50 dark:border-gray-700/50
+           transform transition-all duration-500
+           hover:scale-105 hover:-rotate-2
+           cursor-pointer
+           shadow-[0_8px_16px_-8px_rgba(0,0,0,0.1),0_-2px_4px_-2px_rgba(0,0,0,0.05)]
+           dark:shadow-[0_8px_16px_-8px_rgba(255,255,255,0.1),0_-2px_4px_-2px_rgba(255,255,255,0.05)]
+           hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2),0_-4px_8px_-4px_rgba(0,0,0,0.1)]
+           dark:hover:shadow-[0_32px_64px_-16px_rgba(255,255,255,0.2),0_-4px_8px_-4px_rgba(255,255,255,0.1)];
+  }
+
+  .hero-stat-icon {
+    @apply text-blue-600 dark:text-blue-400 mb-4
+           transform transition-all duration-500
+           group-hover:scale-110 group-hover:rotate-12;
+  }
+
+  .hero-stat-text {
+    @apply text-lg font-semibold text-gray-800 dark:text-gray-200
+           transform transition-all duration-500
+           group-hover:scale-105;
+  }
+
+  .product-card {
+    @apply relative overflow-hidden rounded-[2rem] backdrop-blur-2xl
+           bg-gradient-to-br from-white/95 to-white/90 
+           dark:from-gray-900/95 dark:to-gray-900/90
+           border border-white/30 dark:border-gray-700/30
+           shadow-[0_8px_32px_-8px_rgba(0,0,0,0.1)]
+           dark:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)]
+           p-16 transition-all duration-700 ease-out;
+  }
+
+  .product-card-active {
+    @apply scale-[1.02] shadow-[0_32px_64px_-16px_rgba(10,132,255,0.25)]
+           dark:shadow-[0_32px_64px_-16px_rgba(10,132,255,0.15)];
+  }
+
+  .product-image {
+    @apply absolute top-0 right-0 w-[55%] h-full object-cover opacity-95
+           transition-all duration-700 ease-out transform;
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .product-image-hover {
+    @apply scale-105 opacity-100;
+  }
+
+  .product-content {
+    @apply relative z-10 max-w-[45%] py-8;
+  }
+
+  .product-icon {
+    @apply mb-10 p-5 rounded-2xl bg-gradient-to-br 
+           from-blue-500/10 to-blue-600/10
+           shadow-[0_8px_16px_-8px_rgba(37,99,235,0.2)]
+           dark:shadow-[0_8px_16px_-8px_rgba(37,99,235,0.1)]
+           text-blue-600 dark:text-blue-400
+           transition-all duration-500 transform inline-block;
+  }
+
+  .product-icon-hover {
+    @apply scale-110 rotate-6 shadow-[0_12px_24px_-8px_rgba(37,99,235,0.3)]
+           dark:shadow-[0_12px_24px_-8px_rgba(37,99,235,0.2)];
+  }
+
+  .product-title {
+    @apply text-4xl font-bold mb-6 text-gray-900 dark:text-white
+           tracking-tight leading-tight;
+  }
+
+  .product-description {
+    @apply text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed;
+  }
+
+  .product-features {
+    @apply space-y-5;
+  }
+
+  .product-feature {
+    @apply flex items-center space-x-4 text-lg text-gray-700 dark:text-gray-300
+           transform transition-all duration-300 hover:translate-x-2;
+  }
+
+  .product-nav {
+    @apply flex justify-between items-center mt-16;
+  }
+
+  .product-dot {
+    @apply w-2.5 h-2.5 rounded-full transition-all duration-500 cursor-pointer
+           hover:scale-125;
+  }
+
+  .product-dot-active {
+    @apply bg-gray-900 dark:bg-white scale-125;
+  }
+
+  .product-dot-inactive {
+    @apply bg-gray-300 dark:bg-gray-700;
+  }
+
+  .product-arrow {
+    @apply p-4 rounded-full border border-gray-200 dark:border-gray-700
+           hover:bg-gray-100 dark:hover:bg-gray-800 
+           transition-all duration-300 cursor-pointer
+           hover:scale-110 hover:shadow-lg;
+  }
+
+  .stats-carousel-container {
+    @apply relative w-full overflow-hidden py-6 bg-white/50 dark:bg-gray-800/50 
+           backdrop-blur-lg rounded-2xl border border-white/20 dark:border-gray-700/20
+           shadow-[0_8px_32px_-8px_rgba(0,0,0,0.1)]
+           dark:shadow-[0_8px_32px_-8px_rgba(255,255,255,0.1)];
+  }
+
+  .stats-track {
+    @apply flex whitespace-nowrap;
+    animation: scroll 30s linear infinite;
+  }
+
+  .stats-track:hover {
+    animation-play-state: paused;
+  }
+
+  .stat-item {
+    @apply inline-flex items-center space-x-3 px-6 py-3 
+           text-gray-800 dark:text-gray-200;
+  }
+
+  .stat-icon {
+    @apply text-gray-800 dark:text-gray-100
+           transform transition-transform duration-300;
+  }
+
+  .stat-text {
+    @apply text-base font-semibold whitespace-nowrap;
+  }
+
+  .stat-item:hover .stat-icon {
+    @apply scale-125 rotate-12;
+  }
+}
+
+@keyframes typing {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientPulse {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(15deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
