@@ -43,6 +43,10 @@ import complexityIcon from "./icons/complexity.svg";
 import evolvingLaws from "./icons/evolving.svg";
 import jurisdictional from "./icons/Jurisdictional.svg";
 import manual from "./icons/manual.svg";
+import advisoryImg from "./imgs/advisory.jpg";
+import auditImg from "./imgs/audit.jpg";
+import hrpolicyImg from "./imgs/hrpolicy.jpg";
+import poshImg from "./imgs/POSH.jpg";
 
 // Import pages
 import AIStrategy from "./pages/AIStrategy";
@@ -367,7 +371,7 @@ function App() {
       title: "Labour Law Advisory",
       description:
         "Expert guidance through complex labor laws and compliance requirements.",
-      image: "./src/imgs/advisory.jpg",
+      image: advisoryImg,
       features: [
         "Drafts replies to PF/ESI and wage dispute notices",
         "Liaises with authorities to resolve inspections",
