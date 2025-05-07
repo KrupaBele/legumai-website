@@ -385,7 +385,7 @@ function App() {
       title: "Labor Law Audits",
       description:
         "Comprehensive audits to ensure complete regulatory compliance.",
-      image: "./src/imgs/aduit.jpg",
+      image: auditImg,
       features: [
         "Reviews payroll and statutory filings",
         "Checks contract labor licensing",
@@ -398,7 +398,7 @@ function App() {
       icon: <FolderCheck className="h-10 w-10 text-gray-800 dark:text-white" />,
       title: "HR Policies Drafting",
       description: "End-to-end compliance management powered by AI technology.",
-      image: "./src/imgs/hrpolicy.jpg",
+      image: hrpolicyImg,
       features: [
         "Prepares model standing orders",
         "Writes compliant offer letters and contracts",
@@ -411,7 +411,7 @@ function App() {
       title: "POSH (Prevention of Sexual Harassment)",
       description:
         "Comprehensive training programs for workplace harassment prevention.",
-      image: "./src/imgs/POSH.jpg",
+      image: poshImg,
       features: [
         "Conducts POSH awareness workshops",
         "Sets up Internal Complaints Committees",
