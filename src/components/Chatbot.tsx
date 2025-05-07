@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Maximize2, Minimize2 } from 'lucide-react';
-import TextareaAutosize from 'react-textarea-autosize';
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MessageSquare, X, Send, Maximize2, Minimize2 } from "lucide-react";
+import TextareaAutosize from "react-textarea-autosize";
 
 interface Message {
-  type: 'user' | 'bot';
+  type: "user" | "bot";
   content: string;
 }
 
@@ -12,14 +12,18 @@ export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { type: 'bot', content: 'Hello! I\'m your AI compliance assistant. How can I help you today?' }
+    {
+      type: "bot",
+      content:
+        "Hello! I'm your AI compliance assistant. How can I help you today?",
+    },
   ]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -30,20 +34,24 @@ export default function Chatbot() {
     if (!input.trim()) return;
 
     const userMessage = input.trim();
-    setInput('');
-    setMessages(prev => [...prev, { type: 'user', content: userMessage }]);
+    setInput("");
+    setMessages((prev) => [...prev, { type: "user", content: userMessage }]);
 
     // Simulate bot response
     setTimeout(() => {
-      setMessages(prev => [...prev, {
-        type: 'bot',
-        content: 'I understand you have a question about compliance. Let me help you with that. Our team specializes in labor law compliance and can provide expert guidance on your specific needs.'
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          type: "bot",
+          content:
+            "I understand you have a question about compliance. Let me help you with that. Our team specializes in labor law compliance and can provide expert guidance on your specific needs.",
+        },
+      ]);
     }, 1000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
     }
@@ -58,7 +66,9 @@ export default function Chatbot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-8 ${isOpen ? 'hidden' : 'flex'} left-8 items-center space-x-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-shadow z-50`}
+        className={`fixed bottom-8 ${
+          isOpen ? "hidden" : "flex"
+        } left-8 items-center space-x-2 px-4 py-3  bg-gradient-to-r from-orange-700 to-orange-800 text-white rounded-full shadow-lg hover:shadow-orange-500/40 transition-shadow z-50`}
       >
         <MessageSquare className="h-6 w-6" />
         <span className="font-medium">Chat with AI Assistant</span>
@@ -71,14 +81,18 @@ export default function Chatbot() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className={`fixed ${isExpanded ? 'inset-4' : 'bottom-8 left-8 w-96 h-[600px]'} z-50 rounded-2xl shadow-2xl transition-all duration-300`}
+            className={`fixed ${
+              isExpanded ? "inset-4" : "bottom-8 left-8 w-96 h-[600px]"
+            } z-50 rounded-2xl shadow-2xl transition-all duration-300`}
           >
             <div className="glass-strong flex flex-col h-full rounded-2xl border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
               {/* Header */}
               <div className="p-4 border-b border-gray-200/50 dark:border-gray-700/50 flex justify-between items-center bg-gradient-to-r from-blue-600/10 to-purple-600/10">
                 <div className="flex items-center space-x-2">
                   <MessageSquare className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                  <span className="font-semibold text-gray-800 dark:text-gray-200">AI Compliance Assistant</span>
+                  <span className="font-semibold text-gray-800 dark:text-gray-200">
+                    AI Compliance Assistant
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <button
@@ -105,13 +119,15 @@ export default function Chatbot() {
                 {messages.map((message, index) => (
                   <div
                     key={index}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${
+                      message.type === "user" ? "justify-end" : "justify-start"
+                    }`}
                   >
                     <div
                       className={`max-w-[80%] p-4 rounded-2xl ${
-                        message.type === 'user'
-                          ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200'
+                        message.type === "user"
+                          ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                          : "bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
                       }`}
                     >
                       <p className="text-sm">{message.content}</p>
