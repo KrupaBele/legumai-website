@@ -47,6 +47,8 @@ import advisoryImg from "./imgs/advisory.jpg";
 import auditImg from "./imgs/audit.jpg";
 import hrpolicyImg from "./imgs/hrpolicy.jpg";
 import poshImg from "./imgs/POSH.jpg";
+import ssaLogo from "./imgs/SSAlogo.png";
+import ssaLogo1 from "./imgs/SSAlogo1.png";
 
 // Import pages
 import AIStrategy from "./pages/AIStrategy";
@@ -74,36 +76,36 @@ import NewsAndMedia from "./components/NewsAndMedia";
 function StatsCarousel() {
   const stats = [
     {
-      icon: <Building2 className="h-6 w-6 text-gray-800 dark:text-white" />,
+      icon: <Building2 className="h-6 w-6 text-white dark:text-white" />,
       text: "5000+ Companies Served",
     },
     {
-      icon: <CheckCircle className="h-6 w-6 text-gray-800 dark:text-white" />,
+      icon: <CheckCircle className="h-6 w-6 text-white dark:text-white" />,
       text: "99.9% Compliance Rate",
     },
     {
-      icon: <Shield className="h-6 w-6 text-gray-800 dark:text-white" />,
+      icon: <Shield className="h-6 w-6 text-white dark:text-white" />,
       text: "Industry Leaders",
     },
     {
-      icon: <Award className="h-6 w-6 text-gray-800 dark:text-white" />,
+      icon: <Award className="h-6 w-6 text-white dark:text-white" />,
       text: "Expert Advisory",
     },
     // Duplicate for seamless loop
     {
-      icon: <Building2 className="h-6 w-6 text-gray-800 dark:text-white" />,
+      icon: <Building2 className="h-6 w-6 text-white dark:text-white" />,
       text: "5000+ Companies Served",
     },
     {
-      icon: <CheckCircle className="h-6 w-6 text-gray-800 dark:text-white" />,
+      icon: <CheckCircle className="h-6 w-6 text-white dark:text-white" />,
       text: "99.9% Compliance Rate",
     },
     {
-      icon: <Shield className="h-6 w-6 text-gray-800 dark:text-white" />,
+      icon: <Shield className="h-6 w-6 text-white dark:text-white" />,
       text: "Industry Leaders",
     },
     {
-      icon: <Award className="h-6 w-6 text-gray-800 dark:text-white" />,
+      icon: <Award className="h-6 w-6 text-white dark:text-white" />,
       text: "Expert Advisory",
     },
   ];
@@ -525,12 +527,8 @@ function App() {
             </div>
             <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 mb-16">
               <button className="button-primary text-lg py-3 px-6 font-semibold">
-                Schedule Consultation
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </button>
-              <button className="button-secondary text-lg py-3 px-6 font-semibold group">
                 Book a Consultation
-                <Play className="ml-2 h-5 w-5 inline-block transform transition-transform group-hover:scale-110" />
+                <ArrowRight className="ml-2 h-5 w-5" />
               </button>
             </div>
 
@@ -567,14 +565,17 @@ function App() {
                 <Slider {...sliderSettings}>
                   {challenges.map((challenge, index) => (
                     <div key={index} className="px-2">
-                      <div className="glass p-8 rounded-3xl card-hover h-full">
-                        <div className="mb-6 p-4 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-2xl inline-block">
+                      <div className="glass p-8 m-8 rounded-3xl card-hover h-full ">
+                        <div className="mb-6 p-4  rounded-2xl inline-block dark:bg-white  ">
                           {challenge.icon}
                         </div>
                         <h3 className="text-xl font-medium mb-4 gradient-text">
                           {challenge.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-300">
+                        <p
+                          className="text-gray-600 dark:text-gray-300 "
+                          style={{ fontSize: "13px" }}
+                        >
                           {challenge.description}
                         </p>
                       </div>
@@ -583,7 +584,7 @@ function App() {
                 </Slider>
               </div>
 
-              <div className="glass p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 to-blue-500/10">
+              <div className=" p-8 rounded-3xl ">
                 <div className="text-center">
                   <h3 className="text-2xl font-medium mb-6 gradient-text">
                     Our Solution
@@ -697,28 +698,30 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  icon: <BookOpenCheck className="h-10 w-10" />,
+                  icon: (
+                    <BookOpenCheck className="h-10 w-10  dark:text-white" />
+                  ),
                   title: "Labor Law Mastery",
                   description:
                     "Expert knowledge covering 236+ Acts and 10,000+ compliances across various industries and sectors.",
                   stats: "236+ Acts",
                 },
                 {
-                  icon: <Globe2 className="h-10 w-10" />,
+                  icon: <Globe2 className="h-10 w-10  dark:text-white" />,
                   title: "Multi-Jurisdictional Compliance",
                   description:
                     "Navigate complex state-specific laws across India, SEA, and MEA regions with confidence.",
                   stats: "28+ States",
                 },
                 {
-                  icon: <Brain className="h-10 w-10" />,
+                  icon: <Brain className="h-10 w-10  dark:text-white" />,
                   title: "HR Due Diligence",
                   description:
                     "Comprehensive support for mergers and acquisitions, ensuring smooth transitions and compliance.",
                   stats: "500+ M&As",
                 },
                 {
-                  icon: <Briefcase className="h-10 w-10" />,
+                  icon: <Briefcase className="h-10 w-10  dark:text-white" />,
                   title: "AI Integration",
                   description:
                     "Leverage advanced AI to automate 95% of compliance tasks, from payroll to documentation.",
@@ -765,15 +768,24 @@ function App() {
     <Router>
       <div className="relative bg-white dark:bg-gray-900 transition-colors duration-200">
         <nav className="fixed w-full z-50 top-0">
-          <div className="glass-strong mx-4 mt-4 px-6 py-4 rounded-2xl border border-gray-200/50 dark:border-gray-700/50">
-            <div className="container mx-auto flex justify-between items-center">
+          <div
+            className="glass-strong mx-4 mt-4 px-6 rounded-2xl"
+            style={{ backgroundColor: "#202020" }}
+          >
+            <div
+              className="container mx-auto flex justify-between items-center"
+              style={{ backgroundColor: "#202020" }}
+            >
+              {/* Logo on the left */}
               <div className="flex items-center space-x-2">
-                <Shield className="h-8 w-8 text-orange-600 dark:text-blue-400" />
-                <span className="text-xl font-bold text-gray-900 dark:text-white">
-                  SSA Compliance
-                </span>
+                <img
+                  src={ssaLogo1}
+                  className="h-20 w-30 text-white dark:text-blue-400"
+                />
               </div>
-              <div className="hidden md:flex space-x-8">
+
+              {/* Centered menu items */}
+              <div className="hidden md:flex flex-1 justify-center space-x-8">
                 <Link to="/" className="nav-link">
                   Home
                 </Link>
@@ -791,6 +803,22 @@ function App() {
                 </Link>
                 <Link to="/contact" className="nav-link">
                   Contact
+                </Link>
+              </div>
+
+              {/* Auth buttons on the right */}
+              <div className="flex items-center space-x-4">
+                <Link
+                  to="/login"
+                  className="px-4 py-2 text-sm font-medium rounded-lg text-white hover:bg-gray-700 transition-colors"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="px-4 py-2 text-sm font-medium rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-colors"
+                >
+                  Sign Up
                 </Link>
               </div>
             </div>
@@ -831,13 +859,23 @@ function App() {
             <div className="glass-strong rounded-3xl p-12 md:p-16 border border-gray-200/50 dark:border-gray-700/50">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div>
-                  <div className="flex items-center space-x-2 mb-6">
-                    <Shield className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-                    <span className="text-xl font-bold text-gray-900 dark:text-white">
+                  <div className="flex justify-center mb-5">
+                    <img
+                      src={ssaLogo}
+                      width={150}
+                      className="block dark:hidden"
+                    />
+                    <img
+                      src={ssaLogo1}
+                      width={150}
+                      className="hidden dark:block"
+                    />
+
+                    {/* <span className="text-xl font-bold text-gray-900 dark:text-white">
                       SSA Compliance
-                    </span>
+                    </span> */}
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300">
+                  <p className="text-center text-gray-700 dark:text-gray-300">
                     Your trusted partner for pan-India labor law compliance
                     solutions.
                   </p>

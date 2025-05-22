@@ -48,7 +48,7 @@
   }
 
   .glass-strong {
-    @apply backdrop-blur-xl bg-white/90 dark:bg-gray-900/90 shadow-2xl;
+    @apply backdrop-blur-xl bg-white/90 dark:bg-gray-900/90;
   }
 
   .button-primary {
@@ -82,10 +82,10 @@
   .hero-gradient {
     @apply relative overflow-hidden;
     background:
-      radial-gradient(circle at 15% 15%, rgba(255, 140, 0, 0.35) 0%, transparent 50%),
-      radial-gradient(circle at 85% 15%, rgba(255, 94, 0, 0.35) 0%, transparent 50%),
-      radial-gradient(circle at 50% 80%, rgba(255, 165, 0, 0.25) 0%, transparent 60%),
-      linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+      radial-gradient(circle at 15% 15%, #202020, transparent 50%),
+      radial-gradient(circle at 85% 15%, #202020, transparent 50%),
+      radial-gradient(circle at 50% 80%, #202020, transparent 60%),
+      linear-gradient(180deg, #202020, #202020);
     animation: gradientPulse 12s ease-in-out infinite;
   }
 
@@ -152,7 +152,7 @@
   }
 
   .client-logo {
-    @apply grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100;
+    @apply hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100;
   }
 
   .api-card {
@@ -160,7 +160,7 @@
   }
 
   .nav-link {
-    @apply text-base text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white font-medium transition-colors duration-300 leading-relaxed;
+    @apply text-base text-white dark:text-gray-200 hover:text-white dark:hover:text-white font-medium transition-colors duration-300 leading-relaxed;
   }
 
   .footer-link {
@@ -209,7 +209,7 @@
   }
 
   .product-icon {
-    @apply mb-10 p-5 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/10 shadow-[0_8px_16px_-8px_rgba(37_99_235_0.2)] dark:shadow-[0_8px_16px_-8px_rgba(37_99_235_0.1)] text-blue-600 dark:text-blue-400 transition-all duration-500 transform inline-block;
+    @apply mb-10 p-5 rounded-2xl bg-gradient-to-br shadow-[0_8px_16px_-8px_rgba(37_99_235_0.2)] dark:shadow-[0_8px_16px_-8px_rgba(37_99_235_0.1)] text-blue-600 dark:text-blue-400 transition-all duration-500 transform inline-block;
   }
 
   .product-icon-hover {
@@ -253,7 +253,7 @@
   }
 
   .stats-carousel-container {
-    @apply relative w-full overflow-hidden py-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl border border-white/20 dark:border-gray-700/20 shadow-[0_8px_32px_-8px_rgba(0_0_0_0.1)] dark:shadow-[0_8px_32px_-8px_rgba(255_255_255_0.1)];
+    @apply relative w-full overflow-hidden py-6 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl border border-white/20 dark:border-gray-700/20 shadow-[0_8px_32px_-8px_rgba(0_0_0_0.1)] dark:shadow-[0_8px_32px_-8px_rgba(255_255_255_0.1)];
   }
 
   .stats-track {
@@ -266,11 +266,11 @@
   }
 
   .stat-item {
-    @apply inline-flex items-center space-x-3 px-6 py-3 text-gray-800 dark:text-gray-200;
+    @apply inline-flex items-center space-x-3 px-6 py-3 text-white dark:text-white;
   }
 
   .stat-icon {
-    @apply text-gray-800 dark:text-gray-100 transform transition-transform duration-300;
+    @apply text-white dark:text-white transform transition-transform duration-300;
   }
 
   .stat-text {

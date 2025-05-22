@@ -128,11 +128,21 @@ export default function Clientele() {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="client-logo h-12 w-auto mx-auto object-contain max-w-[180px]"
-                />
+                <div className="w-40 h-20 flex items-center justify-center">
+                  {" "}
+                  {/* Fixed size container */}
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="max-h-full max-w-full object-contain" /* This will maintain aspect ratio */
+                    style={{
+                      height: "auto",
+                      width: "auto",
+                      maxHeight: "80px" /* Adjust as needed */,
+                      maxWidth: "160px" /* Adjust as needed */,
+                    }}
+                  />
+                </div>
               </motion.div>
             ))}
           </div>
