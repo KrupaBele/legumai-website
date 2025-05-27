@@ -854,9 +854,9 @@ function App() {
           {isDark ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
         </button>
 
-        <footer className="section-gradient-2 pb-16">
+        <footer className="section-gradient-2 pb-20">
           <div className="container mx-auto px-4">
-            <div className="glass-strong rounded-3xl md:p-16 border border-gray-200/50 dark:border-gray-700/50">
+            <div className="glass-strong rounded-3xl pb-12 md:p-16 border border-gray-200/50 dark:border-gray-700/50">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div>
                   <div className="flex justify-center mb-5">
