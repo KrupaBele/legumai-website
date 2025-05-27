@@ -512,7 +512,7 @@ function App() {
 
   const HomePage = () => (
     <>
-      <div className="section-height hero-gradient pt-64 px-4">
+      <div className="section-height hero-gradient pt-40 px-4">
         <div className="container mx-auto">
           <div className="max-w-5xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 gradient-text leading-relaxed">
@@ -525,7 +525,7 @@ function App() {
             <div className="mb-12">
               <ExpertiseTypewriter />
             </div>
-            <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 mb-16">
+            <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 mb-36">
               <button className="button-primary text-lg py-3 px-6 font-semibold">
                 Book a Consultation
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -767,20 +767,20 @@ function App() {
   return (
     <Router>
       <div className="relative bg-white dark:bg-gray-900 transition-colors duration-200">
-        <nav className="fixed w-full z-50 top-0">
+        <nav className=" w-full z-50 top-0">
           <div
-            className="glass-strong mx-4 mt-4 px-6 rounded-2xl"
-            style={{ backgroundColor: "#202020" }}
+            className="glass-strong  px-6 "
+            style={{ backgroundColor: isDark ? "transparent" : "#202020" }}
           >
             <div
-              className="container mx-auto flex justify-between items-center"
-              style={{ backgroundColor: "#202020" }}
+              className="container mx-auto flex justify-between items-center "
+              style={{ backgroundColor: isDark ? "transparent" : "#202020" }}
             >
               {/* Logo on the left */}
               <div className="flex items-center space-x-2">
                 <img
                   src={ssaLogo1}
-                  className="h-20 w-30 text-white dark:text-blue-400"
+                  className="h-20 w-35 text-white dark:text-blue-400"
                 />
               </div>
 
@@ -854,9 +854,9 @@ function App() {
           {isDark ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
         </button>
 
-        <footer className="section-gradient-2 py-32">
+        <footer className="section-gradient-2 pb-16">
           <div className="container mx-auto px-4">
-            <div className="glass-strong rounded-3xl p-12 md:p-16 border border-gray-200/50 dark:border-gray-700/50">
+            <div className="glass-strong rounded-3xl md:p-16 border border-gray-200/50 dark:border-gray-700/50">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div>
                   <div className="flex justify-center mb-5">
